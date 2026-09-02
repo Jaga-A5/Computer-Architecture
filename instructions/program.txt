@@ -1,0 +1,12 @@
+# Example: sum two values in memory and store result.
+# R1 = mem[0], R2 = mem[4], R3 = R1 + R2, store at mem[8]
+
+ADD R1,R0,R0          # R1 <- 0 (clear)
+LW R1,0(R0)           # load word at address 0
+LW R2,4(R0)           # load word at address 4
+ADD R3,R1,R2          # R3 = R1 + R2
+SW R3,8(R0)           # store sum at address 8
+BEQ R1,R2,2           # branch forward if equal (demo branch)
+BNE R1,R2,1           # skip next NOP if not equal
+NOP
+HALT

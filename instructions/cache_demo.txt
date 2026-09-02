@@ -1,0 +1,11 @@
+# Demo 3: Cache Hit / Miss & Memory Spatial Locality Demonstration
+# Shows Cold Misses followed by Cache Hits due to spatial locality (16-byte blocks)
+
+ADD R1, R0, R0
+LW R1, 0(R0)          # Address 0: D-Cache Miss (Cold Miss)
+LW R2, 4(R0)          # Address 4: D-Cache Hit! (Same 16-byte block)
+LW R3, 8(R0)          # Address 8: D-Cache Hit! (Same 16-byte block)
+LW R4, 12(R0)         # Address 12: D-Cache Hit! (Same 16-byte block)
+SW R1, 0(R0)          # Address 0: D-Cache Hit!
+SW R2, 4(R0)          # Address 4: D-Cache Hit!
+HALT

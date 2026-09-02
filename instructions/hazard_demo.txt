@@ -1,0 +1,14 @@
+# Demo 1: Data Hazard, Forwarding & Load-Use Stall Demonstration
+# R1 = mem[0], R2 = mem[4], R3 = R1 + R2 (RAW hazard -> Forwarded)
+# SW R3, 8(R0) -> Store sum
+# LW R4, 8(R0) -> Load sum
+# ADD R5, R4, R1 -> Load-Use hazard on R4 (Stalls 1 cycle)
+
+ADD R1, R0, R0
+LW R1, 0(R0)
+LW R2, 4(R0)
+ADD R3, R1, R2        # RAW Hazard -> Forwarded from EX/MEM
+SW R3, 8(R0)          # Store sum
+LW R4, 8(R0)          # Load sum
+ADD R5, R4, R1        # Load-Use Hazard on R4 -> Stalls 1 cycle
+HALT
