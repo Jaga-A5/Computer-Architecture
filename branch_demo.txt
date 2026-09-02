@@ -1,0 +1,11 @@
+# Demo 2: Control Hazard & Branch Penalty Demonstration
+# Demonstrates branch evaluation and pipeline flushes (2-cycle branch penalty)
+
+ADD R1, R0, R0
+LW R1, 0(R0)
+LW R2, 0(R0)          # R1 == R2
+BEQ R1, R2, 2         # Branch Taken! Flushes IF/ID & ID/EX
+ADD R3, R0, R0        # Skipped due to flush
+ADD R4, R0, R0        # Skipped due to flush
+ADD R5, R1, R2        # Target of branch
+HALT
